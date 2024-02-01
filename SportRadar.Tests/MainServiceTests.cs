@@ -183,5 +183,62 @@ namespace SportRadar.Tests
             Assert.DoesNotThrow(startDelegate);
             Assert.DoesNotThrow(stopDelegate);
         }
+
+
+        [Test]
+        public void UpdateScore_ValidData_NoExceptionThrown()
+        {
+            // Arrange
+            var mainService = new MianService();
+            var homeTeam = "Mexico";
+            var awayTeam = "Canada";
+
+            // Act
+
+            mainService.StartMatch(homeTeam, awayTeam);
+            mainService.UpdateScore(homeTeam, awayTeam, 7, 5);
+
+            // Assert
+            Assert.AreEqual(7, mainService.Score(homeTeam));
+            Assert.AreEqual(5, mainService.Score(awayTeam));
+        }
+
+        [Test]
+        public void UpdateScore_WithoutStarting_ExceptionThrown()
+        {
+            // Arrange
+            var mainService = new MianService();
+            var homeTeam = "Mexico";
+            var awayTeam = "Canada";
+
+            // Act
+            TestDelegate stopDelegate = () =>
+            {
+                mainService.UpdateScore(homeTeam, awayTeam, 7, 5);
+            };
+
+            // Assert
+            Assert.Throws<ArgumentException>(act);
+        }
+
+        [Test]
+        public void UpdateScore_StoppedMatch_ExceptionThrown()
+        {
+            // Arrange
+            var mainService = new MianService();
+            var homeTeam = "Mexico";
+            var awayTeam = "Canada";
+
+            // Act
+            TestDelegate act = () =>
+            {
+                mainService.StartMatch(homeTeam, awayTeam);
+                mainService.StopMatch(homeTeam, awayTeam);
+                mainService.UpdateScore(homeTeam, awayTeam, 7, 5);
+            };
+
+            // Assert
+            Assert.Throws<ArgumentException>(act);
+        }
     }
 }
