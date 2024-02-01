@@ -28,7 +28,10 @@ namespace SportRadar
             {
                 throw new ArgumentNullException(nameof(awayTeam));
             }
-
+            if (homeTeam == awayTeam)
+            {
+                throw new ArgumentException($"Team name must be unique.");
+            }
             matchRepository.AddMatch(homeTeam, awayTeam);
         }
 
@@ -38,8 +41,12 @@ namespace SportRadar
             {
                 throw new ArgumentNullException(nameof(teamName));
             }
-            //throw new KeyNotFoundException();
-            return matchRepository.GetScore(teamName);
+            var match = matchRepository.GetMatch(teamName);
+            if (match == null)
+            {
+                throw new KeyNotFoundException();
+            }
+            return match.HomeTeam == teamName ? match.HomeTeamScore : match.AwayTeamScore;
         }
     }
 }

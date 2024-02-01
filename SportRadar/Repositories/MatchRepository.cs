@@ -29,17 +29,15 @@ namespace SportRadar.Repositories
 
         public Match? GetMatch(string homeTeam, string awayTeam)
         {
-            return DataContext.MatchesOnBoard.FirstOrDefault(m => m.HomeTeam == homeTeam && m.AwayTeam == awayTeam);
+            return DataContext.MatchesOnBoard.FirstOrDefault(m => Filter(m, homeTeam) || Filter(m, awayTeam));
         }
 
-        public int GetScore(string teamName)
+        public Match? GetMatch(string teamName)
         {
-            var match = DataContext.MatchesOnBoard.FirstOrDefault(m => m.HomeTeam == teamName || m.AwayTeam == teamName);
-            if (match == null)
-            {
-                throw new KeyNotFoundException();
-            }
-            return match.HomeTeam == teamName ? match.HomeTeamScore : match.AwayTeamScore;
+            return DataContext.MatchesOnBoard.FirstOrDefault(m => Filter(m, teamName));
         }
+
+        private bool Filter(Match match, string teamName) => match.AwayTeam == teamName || match.AwayTeam == teamName;
+
     }
 }
