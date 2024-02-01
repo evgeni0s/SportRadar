@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace SportRadar.Models
 {
-    internal class Match
+    public record Match()
     {
+        public string HomeTeam { get; set; }
+        public string AwayTeam { get; set; }
+        public int HomeTeamScore { get; set; }
+        public int AwayTeamScore { get; set; }
     }
 }

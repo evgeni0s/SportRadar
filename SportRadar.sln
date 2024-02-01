@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportRadar.Data", "SportRadar.Data\SportRadar.Data.csproj", "{FC4800D0-2454-4286-99C0-CAEA1BA1102B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportRadar", "SportRadar\SportRadar.csproj", "{DB449872-00D7-4229-85A4-5A2EDD73EC26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportRadar.Tests", "SportRadar.Tests\SportRadar.Tests.csproj", "{C0FEFBF4-D5F6-4B0D-9B22-BFA747C99083}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FC4800D0-2454-4286-99C0-CAEA1BA1102B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC4800D0-2454-4286-99C0-CAEA1BA1102B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC4800D0-2454-4286-99C0-CAEA1BA1102B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC4800D0-2454-4286-99C0-CAEA1BA1102B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DB449872-00D7-4229-85A4-5A2EDD73EC26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DB449872-00D7-4229-85A4-5A2EDD73EC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB449872-00D7-4229-85A4-5A2EDD73EC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB449872-00D7-4229-85A4-5A2EDD73EC26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0FEFBF4-D5F6-4B0D-9B22-BFA747C99083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0FEFBF4-D5F6-4B0D-9B22-BFA747C99083}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0FEFBF4-D5F6-4B0D-9B22-BFA747C99083}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0FEFBF4-D5F6-4B0D-9B22-BFA747C99083}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

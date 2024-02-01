@@ -14,7 +14,8 @@ namespace SportRadar.Tests
         public void Test1()
         {
             // Arrange
-            var mainService = new ScoreBoard();
+
+            var mainService = new MianService();
             var homeTeam = "Mexico";
             var awayTeam = "Canada";
 
@@ -25,4 +26,5 @@ namespace SportRadar.Tests
             Assert.AreEqual(0, mainService.Score(homeTeam));
             Assert.AreEqual(0, mainService.Score(awayTeam));
         }
+    }
 }
