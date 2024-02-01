@@ -4,13 +4,7 @@ namespace SportRadar.Tests
 {
     public class MainServiceTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
-        [TestCase()]
         public void StartMatch_NoException()
         {
             // Arrange
@@ -239,6 +233,57 @@ namespace SportRadar.Tests
 
             // Assert
             Assert.Throws<ArgumentException>(act);
+        }
+
+        [Test]
+        public void GetSummary_ValidData_NoException()
+        {
+            // Arrange
+            var mainService = new MianService();
+            var matchDataList = new List<(string HomeTeam, string AwayTeam, int HomeTeamScore, int AwayTeamScore)>
+            {
+                ("Mexico", "Canada", 0, 5),
+                ("Spain", "Brazil", 10, 2),
+                ("Germany", "France", 2, 2),
+                ("Uruguay", "Italy", 6, 6),
+                ("Argentina", "Australia", 3, 1)
+            };
+
+            foreach (var matchData in matchDataList)
+            {
+                mainService.StartMatch(matchData.HomeTeam, matchData.AwayTeam);
+            }
+
+            foreach (var matchData in matchDataList)
+            {
+                mainService.UpdateScore(matchData.HomeTeam, matchData.AwayTeam, matchData.HomeTeamScore, matchData.AwayTeamScore);
+            }
+
+            // Act
+            var summary = mainService.GetSummary();
+
+            // Assert
+            Assert.AreEqual(5, summary.Count);
+
+            Assert.AreEqual("1. Uruguay 6 - Italy 6", summary[0]);
+            Assert.AreEqual("2. Spain 10 - Brazil 2", summary[1]);
+            Assert.AreEqual("3. Mexico 0 - Canada 5", summary[2]);
+            Assert.AreEqual("4. Argentina 3 - Australia 1", summary[3]);
+            Assert.AreEqual("5. Germany 2 - France 2", summary[4]);
+        }
+
+        [Test]
+        public void GetSummary_EmptyInput_NoException()
+        {
+            // Arrange
+            var mainService = new MianService();
+
+            // Act
+            var summary = mainService.GetSummary();
+
+            // Assert
+            Assert.IsNotNull(summary);
+            Assert.IsEmpty(summary);
         }
     }
 }
