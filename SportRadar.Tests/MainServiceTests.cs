@@ -212,7 +212,7 @@ namespace SportRadar.Tests
             var awayTeam = "Canada";
 
             // Act
-            TestDelegate stopDelegate = () =>
+            TestDelegate act = () =>
             {
                 mainService.UpdateScore(homeTeam, awayTeam, 7, 5);
             };

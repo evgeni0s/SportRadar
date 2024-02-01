@@ -48,6 +48,16 @@ namespace SportRadar.Repositories
             DataContext.MatchesOnBoard.Remove(match);
         }
 
+        public void UpdateMatch(string homeTeam, string awayTeam, int homeTeamScore, int awayTeamScore)
+        {
+            var match = GetMatch(homeTeam, awayTeam);
+            if (match == null)
+            {
+                throw new ArgumentException($"Match {homeTeam}:{awayTeam} does not exist.");
+            }
+            match.HomeTeamScore = homeTeamScore;
+            match.AwayTeamScore = awayTeamScore;
+        }
 
         private bool Filter(Match match, string teamName) => match.HomeTeam == teamName || match.AwayTeam == teamName;
 

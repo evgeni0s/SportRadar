@@ -62,7 +62,24 @@ namespace SportRadar
             }
 
             matchRepository.DeleteMatch(homeTeam, awayTeam);
+        }
 
+        public void UpdateScore(string homeTeam, string awayTeam, int homeTeamScore, int awayTeamScore)
+        {
+            if (string.IsNullOrEmpty(homeTeam))
+            {
+                throw new ArgumentNullException(nameof(homeTeam));
+            }
+
+            if (string.IsNullOrEmpty(awayTeam))
+            {
+                throw new ArgumentNullException(nameof(awayTeam));
+            }
+            if (homeTeamScore < 0 || awayTeamScore < 0)
+            {
+                throw new ArgumentException($"Team score cannot be negative.");
+            }
+            matchRepository.UpdateMatch(homeTeam, awayTeam, homeTeamScore, awayTeamScore);
         }
     }
 }
