@@ -48,5 +48,21 @@ namespace SportRadar
             }
             return match.HomeTeam == teamName ? match.HomeTeamScore : match.AwayTeamScore;
         }
+
+        public void StopMatch(string homeTeam, string awayTeam)
+        {
+            if (string.IsNullOrEmpty(homeTeam))
+            {
+                throw new ArgumentNullException(nameof(homeTeam));
+            }
+
+            if (string.IsNullOrEmpty(awayTeam))
+            {
+                throw new ArgumentNullException(nameof(awayTeam));
+            }
+
+            matchRepository.DeleteMatch(homeTeam, awayTeam);
+
+        }
     }
 }

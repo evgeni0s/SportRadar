@@ -148,5 +148,40 @@ namespace SportRadar.Tests
             Assert.Throws<ArgumentException>(act);
         }
 
+        [Test]
+        public void StartAndStop_Multiple_ValidData_NoExceptionThrown()
+        {
+            // Arrange
+            var mainService = new MianService();
+            var matchDataList = new List<(string HomeTeam, string AwayTeam)>
+            {
+                ("Mexico", "Canada"),
+                ("Spain", "Brazil"),
+                ("Germany", "France"),
+                ("Uruguay", "Italy"),
+                ("Argentina", "Australia")
+            };
+
+            // Act
+            TestDelegate startDelegate = () =>
+            {
+                foreach (var matchData in matchDataList)
+                {
+                    mainService.StartMatch(matchData.HomeTeam, matchData.AwayTeam);
+                }
+            };
+
+            TestDelegate stopDelegate = () =>
+            {
+                foreach (var matchData in matchDataList)
+                {
+                    mainService.StopMatch(matchData.HomeTeam, matchData.AwayTeam);
+                }
+            };
+
+            // Assert
+            Assert.DoesNotThrow(startDelegate);
+            Assert.DoesNotThrow(stopDelegate);
+        }
     }
 }

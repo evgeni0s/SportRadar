@@ -12,5 +12,6 @@ namespace SportRadar.Models
         public string AwayTeam { get; set; }
         public int HomeTeamScore { get; set; }
         public int AwayTeamScore { get; set; }
+        public bool IsStarted { get; set; }
     }
 }

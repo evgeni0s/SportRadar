@@ -17,7 +17,8 @@ namespace SportRadar.Repositories
                 var newMatch = new Match()
                 {
                     HomeTeam = homeTeam,
-                    AwayTeam = awayTeam
+                    AwayTeam = awayTeam,
+                    IsStarted = true
                 };
                 DataContext.MatchesOnBoard.Add(newMatch);
             }
@@ -37,7 +38,18 @@ namespace SportRadar.Repositories
             return DataContext.MatchesOnBoard.FirstOrDefault(m => Filter(m, teamName));
         }
 
-        private bool Filter(Match match, string teamName) => match.AwayTeam == teamName || match.AwayTeam == teamName;
+        public void DeleteMatch(string homeTeam, string awayTeam)
+        {
+            var match = GetMatch(homeTeam, awayTeam);
+            if (match == null)
+            {
+                throw new ArgumentException($"Match {homeTeam}:{awayTeam} does not exist.");
+            }
+            DataContext.MatchesOnBoard.Remove(match);
+        }
+
+
+        private bool Filter(Match match, string teamName) => match.HomeTeam == teamName || match.AwayTeam == teamName;
 
     }
 }
