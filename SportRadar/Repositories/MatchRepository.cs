@@ -66,10 +66,7 @@ namespace SportRadar.Repositories
                     .ThenByDescending(m => m.StartTime)
                     .ToList();
         }
-        
-
 
         private bool Filter(Match match, string teamName) => match.HomeTeam == teamName || match.AwayTeam == teamName;
-
     }
 }
