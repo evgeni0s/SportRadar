@@ -110,5 +110,43 @@ namespace SportRadar.Tests
             // Assert
             Assert.Throws<ArgumentException>(act);
         }
+
+        [Test]
+        public void StopMatch_NoException()
+        {
+            // Arrange
+            var mainService = new MianService();
+            var homeTeam = "Mexico";
+            var awayTeam = "Canada";
+
+            // Act
+            mainService.StartMatch(homeTeam, awayTeam);
+            TestDelegate act = () =>
+            {
+                mainService.StopMatch(homeTeam, awayTeam);
+            };
+
+            // Assert
+            Assert.DoesNotThrow(act);
+        }
+
+        [Test]
+        public void StopMatch_WithoutStarting_ExceptionThrown()
+        {
+            // Arrange
+            var mainService = new MianService();
+            var homeTeam = "Mexico";
+            var awayTeam = "Canada";
+
+            // Act
+            TestDelegate act = () =>
+            {
+                mainService.StopMatch(homeTeam, awayTeam);
+            };
+
+            // Assert
+            Assert.Throws<ArgumentException>(act);
+        }
+
     }
 }
