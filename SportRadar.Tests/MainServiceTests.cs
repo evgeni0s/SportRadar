@@ -265,11 +265,11 @@ namespace SportRadar.Tests
             // Assert
             Assert.AreEqual(5, summary.Count);
 
-            Assert.AreEqual("1. Uruguay 6 - Italy 6", summary[0]);
-            Assert.AreEqual("2. Spain 10 - Brazil 2", summary[1]);
-            Assert.AreEqual("3. Mexico 0 - Canada 5", summary[2]);
-            Assert.AreEqual("4. Argentina 3 - Australia 1", summary[3]);
-            Assert.AreEqual("5. Germany 2 - France 2", summary[4]);
+            Assert.AreEqual("Uruguay 6 - Italy 6", summary[0]);
+            Assert.AreEqual("Spain 10 - Brazil 2", summary[1]);
+            Assert.AreEqual("Mexico 0 - Canada 5", summary[2]);
+            Assert.AreEqual("Argentina 3 - Australia 1", summary[3]);
+            Assert.AreEqual("Germany 2 - France 2", summary[4]);
         }
 
         [Test]

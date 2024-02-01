@@ -81,5 +81,20 @@ namespace SportRadar
             }
             matchRepository.UpdateMatch(homeTeam, awayTeam, homeTeamScore, awayTeamScore);
         }
+
+        public List<string> GetSummary()
+        {
+            var matches = matchRepository.GetMatchesInProgressOrderedByScore();
+            if (matches == null) 
+            {
+                return new List<string>();
+            }
+            return matches.Select(FormatMatch).ToList();
+        }
+
+        private static string FormatMatch(Models.Match match)
+        {
+            return $"{match.HomeTeam} {match.HomeTeamScore} - {match.AwayTeam} {match.AwayTeamScore}";
+        }
     }
 }

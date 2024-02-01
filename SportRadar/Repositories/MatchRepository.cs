@@ -18,7 +18,7 @@ namespace SportRadar.Repositories
                 {
                     HomeTeam = homeTeam,
                     AwayTeam = awayTeam,
-                    IsStarted = true
+                    StartTime = DateTime.Now,
                 };
                 DataContext.MatchesOnBoard.Add(newMatch);
             }
@@ -58,6 +58,16 @@ namespace SportRadar.Repositories
             match.HomeTeamScore = homeTeamScore;
             match.AwayTeamScore = awayTeamScore;
         }
+
+        public List<Match> GetMatchesInProgressOrderedByScore()
+        {
+            return DataContext.MatchesOnBoard
+                    .OrderByDescending(m => m.HomeTeamScore + m.AwayTeamScore)
+                    .ThenByDescending(m => m.StartTime)
+                    .ToList();
+        }
+        
+
 
         private bool Filter(Match match, string teamName) => match.HomeTeam == teamName || match.AwayTeam == teamName;
 
